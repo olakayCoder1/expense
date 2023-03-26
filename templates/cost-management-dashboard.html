@@ -1,0 +1,275 @@
+{% extends 'base.html '%}
+{% block title%}Cost management dashboard {% endblock %}
+{% block content %}
+<style>
+    .cost-management{
+        width: 80%;
+        /* background-color: #19ab5d;  */
+        /* background-color: #51A5C4;  */
+        color: #54596A;  
+        /* background-color: #1454DF; BUTTON */
+        /* background-color: #929EAD; */
+        /* background-color: #AAD2DC; */
+        /* background-color: #92AAC0; */
+        /* background-color: #f7f8fA; */
+    }
+    .cost-management-welcome{
+        margin: 20px;
+    }
+    .cost-management-intro{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:10px 20px 20px  ;
+    }
+    /* .requester-intro-user{
+       
+    } */
+    .cost-management-intro span{
+        font-size: small;
+        padding: 5px 20px;
+        margin-left: 5px;
+        background-color: #0d7398;
+        color: #fff;
+        border-radius: 10px;
+    }
+    .company-budget{
+        border: 1px solid #a6a0a0 ;
+        padding: 20px 40px 20px 10px;
+        border-radius: 10px;
+    }
+    .company-budget h3{
+        font-size: medium;
+        font-weight: 200;
+    }
+    .company-budget h2{
+        font-size: xx-large;
+    }
+    .cost-card-list{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+    .cost-card{
+        background-color: #c0baba;;
+        border: 1px solid #c0baba;;
+        min-width: 250px;
+        max-width: 300px;
+        border-radius: 10px;
+    }
+    .cost-card h2{
+        padding: 5px 20px 0;
+    }
+    .cost-card-department-total{
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid #a6a0a0;
+        padding: 10px 20px ;
+    }
+    .cost-card-department-total span{
+        font-size: small;
+        font-weight: 300;
+    }
+    .cost-card-department-total strong{
+        font-weight: 700;
+        font-size: x-large;
+    }
+    .cost-card-list p{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .cost-card-break{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+
+    }
+    .cost-card-list p span{
+        font-size: small;
+        font-weight: 300;
+    }
+    .cost-management-intro-user .user-email{
+        font-size: small;
+        margin: 2px;
+
+    }
+    .cost-management-intro .add-button{
+        background-color:  #19ab5d;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .cost-management-request-list{
+        width: 100%;
+        box-sizing: border-box;
+        /* padding: 10px 20px; */
+        overflow: auto;
+        background-color:#bec0c5 ;
+        
+    }
+    form{
+        background-color: #fff;
+        padding:  20px 0 10px 20px;
+    }
+    input{
+        width: 300px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        outline: none;
+        color: #6b6b6b;
+        border: 1px solid #bec0c5;
+        font-size: medium;
+    }
+    .table-container{
+        width: 100%;
+        /* padding: 10px 20px;  */
+        overflow: auto;
+    }
+    table{
+        width: 100%;
+        overflow: auto;
+        overflow-x: auto;
+        border: none;
+    }
+    thead{
+        background-color: #04081A;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+    }
+    thead td{
+        /* padding: 10px;
+        text-align: center;
+        min-width: 200px; */
+        text-transform: uppercase;
+        padding: 10px;
+        border: none;
+        font-size: larger;
+        font-weight: 500;
+
+    }
+    tbody td{
+        padding: 20px;
+        font-weight: 500;
+        font-size: medium;
+        text-align: center;
+    }
+    tbody tr:hover{
+        color: #fff;
+        background-color: #55554d;
+    }
+    .accept{
+        padding: 5px 20px;
+        border-radius: 5px;
+        color: #fff;
+        background-color: blue;
+        margin: 10px 0;
+        cursor: pointer;
+    }
+    .reject{
+        padding: 5px 20px;
+        border-radius: 5px;
+        color: #fff;
+        background-color: red;
+        margin: 10px 0;
+        cursor: pointer;
+    }
+
+</style>
+<div class="cost-management">
+    <h2 class="cost-management-welcome">Dashboard</h2>
+    <div class="cost-management-intro">
+        <div class="company-budget">
+            <h3>2021 Company Budget</h2>
+            <h2>#2000000000</h2>
+        </div>
+        <div class="company-budget">
+            <h3>BALANCE</h2>
+            <h2>#90000000</h2>
+        </div>
+        <div class="cost-management-intro-user">
+            <h2>Olakay<span>Cost management</span></h2>
+            <p class="user-email">programmerolakay@gmail.com</p>
+        </div>
+        <!-- <p class="add-button" onclick="createRequest()">Create new request</p> -->
+    </div>
+    <div class="cost-card-list">
+        <div class="cost-card">
+            <h2>C.O.M</h3>
+            <div class="cost-card-department-total"><span>Year budget</span><strong class="price">#2000000</strong></div>
+            <div class="cost-card-break">
+                <p><span>Spent</span><strong>#50000</strong></p>
+                <p><span>Remain</span><strong>#50000</strong></p>
+            </div>
+        </div>
+        <div class="cost-card">
+            <h2>C.O.M</h3>
+            <div class="cost-card-department-total"><span>Year budget</span><strong class="price">#2000000</strong></div>
+            <div class="cost-card-break">
+                <p><span>Spent</span><strong>#50000</strong></p>
+                <p><span>Remain</span><strong>#50000</strong></p>
+            </div>
+        </div>
+        <div class="cost-card">
+            <h2>C.O.M</h3>
+            <div class="cost-card-department-total"><span>Year budget</span><strong class="price">#2000000</strong></div>
+            <div class="cost-card-break">
+                <p><span>Spent</span><strong>#50000</strong></p>
+                <p><span>Remain</span><strong>#50000</strong></p>
+            </div>
+        </div>
+        <div class="cost-card">
+            <h2>C.O.M</h3>
+            <div class="cost-card-department-total"><span>Year budget</span><strong class="price">#2000000</strong></div>
+            <div class="cost-card-break">
+                <p><span>Spent</span><strong>#50000</strong></p>
+                <p><span>Remain</span><strong>#50000</strong></p>
+            </div>
+        </div> 
+       
+        
+    </div>
+    <hr>
+    <form action="">
+        <input type="search" name="title" id="" placeholder="Search Request">
+    </form>
+    <div class="cost-management-request-list">
+        <table cellspacing="0" >
+            <thead>
+                <tr>
+                    <td class="first">TITLE</td>
+                    <td>AMOUNT</td>
+                    <td>department</td>
+                    <td>Approve</td>
+                    <td>Reject</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense in expense_request %}
+                <tr>
+                    <td class="first">food stuff</td>
+                    <td>{{ expense.amount }}</td>
+                    <td>{{ expense.request_department.name }}</td>
+                    <td><a href="{% url 'accept_expense_request' expense.slug %}"><span class="accept">Accept</span></a></td>
+                    <td><a href="{% url 'reject_expense_request' expense.slug %}"><span class="reject">Reject</span></a></td>
+                </tr>
+                {% endfor %} 
+               
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock%}
+
+{% block script %}
+  <script>
+    // function acceptExpense(e){
+    //     alert('hello world')
+    //     console.log(e)
+    // }
+  </script>
+{% endblock%}

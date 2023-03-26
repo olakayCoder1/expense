@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% block title %}Hod dashboard{% endblock%}
+{% block content %}
+<style>
+    .hod-container{
+        width: 80%;
+    }
+    .hod-top{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+    }
+    .cost-management-welcome{
+        margin: 20px;
+    }
+    .cost-management-intro{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:10px 20px 20px  ;
+    }
+    /* .requester-intro-user{
+       
+    } */
+    .cost-management-intro span{
+        font-size: small;
+        padding: 5px 20px;
+        margin-left: 5px;
+        background-color: #0d7398;
+        color: #fff;
+        border-radius: 10px;
+    }
+    .company-budget{
+        border: 1px solid #a6a0a0 ;
+        padding: 20px 40px 20px 10px;
+        border-radius: 10px;
+    }
+    .company-budget h3{
+        font-size: medium;
+        font-weight: 200;
+    }
+    .company-budget h2{
+        font-size: xx-large;
+    }
+    .cost-management-intro-user .user-email{
+        font-size: small;
+        margin: 2px;
+
+    }
+    .cost-management-intro .add-button{
+        background-color:  #19ab5d;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .cost-management-request-list{
+        width: 100%;
+        box-sizing: border-box;
+        /* padding: 10px 20px; */
+        overflow: auto;
+        background-color:#bec0c5 ;
+        
+    }
+    form{
+        background-color: #fff;
+        padding:  20px 0 10px 20px;
+    }
+    input{
+        width: 300px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        outline: none;
+        color: #6b6b6b;
+        border: 1px solid #bec0c5;
+        font-size: medium;
+    }
+    .table-container{
+        width: 100%;
+        /* padding: 10px 20px;  */
+        overflow: auto;
+        /* background-color:#bec0c5 ; */
+        background-color: rgb(240, 236, 236);
+    }
+    table{
+        width: 100%;
+        overflow: auto;
+        overflow-x: auto;
+        border: none;
+    }
+    thead{
+        /* padding: 50px;
+        background-color: #2b2b22;
+        color: #fff;
+        text-transform: uppercase; */
+        background-color: #04081A;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+    }
+    thead td{
+        /* padding: 10px;
+        text-align: center;
+        min-width: 200px; */
+        text-transform: uppercase;
+        padding: 10px;
+        border: none;
+        font-size: larger;
+        font-weight: 500;
+
+    }
+    tbody td{
+        padding: 20px;
+        font-weight: 500;
+        font-size: medium;
+        text-align: center;
+    }
+    tbody tr:hover{
+        color: #fff;
+        background-color: #55554d;
+    }
+    .accept{
+        padding: 5px 20px;
+        border-radius: 5px;
+        color: #fff;
+        background-color: blue;
+        margin: 10px 0;
+        cursor: pointer;
+    }
+    .reject{
+        padding: 5px 20px;
+        border-radius: 5px;
+        color: #fff;
+        background-color: red;
+        margin: 10px 0;
+        cursor: pointer;
+    }
+</style>
+    <div class="hod-container">
+        <div class="hod-top">
+            <h2>Welcome Olanrewaju</h2>
+            <p>Information and Communication Science</p>
+        </div>
+        <div class="cost-management-intro">
+            
+            <div class="company-budget">
+                <h3>2021 Department Budget</h2>
+                <h2>#2000000000</h2>
+            </div>
+            <div class="company-budget">
+                <h3>BALANCE</h2>
+                <h2>#90000000</h2>
+            </div>
+            <div class="cost-management-intro-user">
+                <h2>{{ request.user.username}}<span>Head of Department</span></h2>
+                <p class="user-email">{{ request.user.email }}</p>
+            </div>
+            <!-- <p class="add-button" onclick="createRequest()">Create new request</p> -->
+        </div>
+        <form action="">
+            <input type="search" name="title" id="" placeholder="Search Request">
+        </form>
+        <div class="table-container">
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <td>TITLE</td>
+                        <td>AMOUNT</td>
+                        <td>REQUESTER</td>
+                        <td>APPROVE</td>
+                        <td>REJECT</td>
+                       
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expense in expense_request %}
+                    <tr>
+                        <td>{{ expense.title }}</td>
+                        <td>{{ expense.amount }}</td>
+                        <td>{{ expense.request_user }}</td>
+                        <td><a href="{% url 'accept_expense_request' expense.id %}"><span class="accept">Accept</span></a></td>
+                        <td><a href="{% url 'reject_expense_request' expense.id %}"><span class="reject">Reject</span></a></td>
+                    </tr>
+                    {% empty %}
+                    <h1>EMPTY REQUEST</h1>
+                    {% endfor %}
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

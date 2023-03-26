@@ -1,0 +1,143 @@
+{% extends 'base.html '%}
+{% block title%}Requester dashboard {% endblock %}
+{% block content %}
+<style>
+    .requester-form{
+        width: 80%;
+        /* background-color: #19ab5d;  */
+        /* background-color: #51A5C4;  */
+        color: #54596A;  
+        /* background-color: #1454DF;  */
+        /* background-color: #929EAD; */
+        /* background-color: #AAD2DC; */
+        /* background-color: #92AAC0; */
+        /* background-color: #f7f8fA; */
+
+    }
+    form{
+        margin-top: 40px;
+        border-top: 1px solid;
+        position: relative;
+    }
+    form .title{
+        position: absolute;
+        top:-20px;
+        margin: 0 20px;
+        padding: 5px;
+        background-color: #fff;
+    }
+    .form-group{
+        max-width: 500px;
+        width: 100%;
+        margin-top: 40px;
+        /* background-color: red; */
+    }
+    input{
+        /* width: 400px; */
+        height: 50px;
+        padding: 0 20px;
+        outline: none;
+        border: 1px solid #bec0c5;
+        border-radius: 5px;
+        font-size: medium;
+        color: #6b6b6b;
+    }
+    .input-group{
+        display: flex;
+    }
+    .input-container{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 20px;
+    }
+    .submit{
+        padding: 10px 40px;
+        font-size: medium;
+        margin-left: 20px;
+        outline: none;
+        background-color:  #19ab5d;
+        color: #fff;
+        border-radius: 5px;
+        border: 1px solid #19ab5d;
+        cursor: pointer;
+    }
+
+
+    .requester-welcome{
+        margin: 20px;
+    }
+    .requester-intro{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:10px 20px 20px  ;
+    }
+    /* .requester-intro-user{
+       
+    } */
+    .requester-intro span{
+        font-size: small;
+        padding: 5px 20px;
+        margin-left: 5px;
+        background-color: #0d7398;
+        color: #fff;
+        border-radius: 10px;
+    }
+    .requester-intro-user .user-email{
+        font-size: small;
+        margin: 2px;
+
+    }
+    .requester-intro .add-button{
+        background-color:  #19ab5d;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+<div class="requester-form">
+    <h2 class="requester-welcome">Information and Communication Science</h2>
+    <div class="requester-intro">
+        <div class="requester-intro-user">
+            <h2>{{ request.user.username}}<span>Requester</span></h2>
+            <p class="user-email">{{ request.user.email }}</p>
+        </div>
+        
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <h2 class="title">Requester Information</h2>
+       <div class="form-group">
+        <div >
+            <!-- <div class="input-group"> -->
+                 <div class="input-container">
+                     <label for="name">Invitee Name</label>
+                     <input type="text" id="name" name="name"  placeholder="Type....">
+                 </div>
+                 <div class="input-container">
+                     <label for="email">Invitee Mail</label>
+                     <input type="email" id="email" name="email" placeholder="Type....">
+                 </div>
+                 <div class="input-container">
+                    <label for="requester">Invitee Role</label>
+                    <input type="text" id="requester" name="requester"  value="Requester" disabled>
+                </div>
+            <!-- </div> -->
+           
+        </div>
+         
+       </div>
+       <button class="submit">Send Invitation link</button>
+    </form>
+
+</div>
+
+{% endblock%}
+
+{% block script %}
+    <script>
+       
+    </script>
+{% endblock%}

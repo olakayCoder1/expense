@@ -1,0 +1,271 @@
+{% extends 'base.html' %}
+{% block title %}Hod dashboard{% endblock%}
+{% block content %}
+<style>
+    .hod-container{
+        width: 80%;
+    }
+    .hod-top{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+    }
+    .table-container{
+        width: 100%;
+        /* padding: 10px 20px;  */
+        overflow: auto;
+    }
+    table{
+        width: 100%;
+        overflow: auto;
+        overflow-x: auto;
+        border: none;
+    }
+    thead{
+        padding: 50px;
+        background-color: #2b2b22;
+        color: #fff;
+        text-transform: uppercase;
+    }
+    tr{
+        border-bottom-width: 1px;
+        
+    }
+    thead td{
+        padding: 10px;
+        text-align: center;
+        min-width: 200px;
+
+    }
+    tbody td{
+        padding: 10px;
+        font-weight: 500;
+        font-size: medium;
+        text-align: center;
+        line-height: 20px;
+    }
+    tbody tr:hover{
+        color: #fff;
+        background-color: #55554d;
+    }
+    .approve{
+        padding: 5px 20px;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        background-color: rgb(20, 77, 183);
+    }
+    .reject{
+        padding: 5px 20px;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        background-color: rgb(248, 43, 43);
+    }
+</style>
+    <div class="hod-container">
+        <div class="hod-top">
+            <h2></h2>
+            <p>LINE EXECUTIVE</p>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Department</td>
+                        <td>Expense Description</td>
+                        <td>Amount</td>
+                        <td>APPROVE</td>
+                        <td>REJECT</td>
+                       
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>food stuff</td>
+                        <td>4000</td>
+                        <td>pelumi</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td><span class="approve">Approve</span></td>
+                        <td><span class="reject">Reject</span></td>
+                        
+                    </tr> 
+                    <tr>
+                        <td>food stuff</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td>pending</td>
+                        <td>pending</td>    
+                    </tr>  
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+<script>
+    // window.onload = getName
+
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+    async function getName(){
+        const response = await fetch('http://127.0.0.1:8000/olakay/', {
+            method : 'GET',
+            // method : 'POST',
+            headers : {
+                'content-type': 'application/json',
+                'X-CSRFToken': csrftoken,
+                'Authorization': 'Token 2f19b29af130bc05382a669d33c9fb17c3a26932'
+            },
+            // body : JSON.stringify({ 'username': 'kabiru', 'password': 'program123'})
+        })
+        const data = await response.json()
+        if (response.status === 200){
+            // alert(data.token)
+            console.log(data)
+        } 
+    }
+
+    
+</script>
+{% endblock %}
+
+
+
+

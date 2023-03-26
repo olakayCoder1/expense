@@ -1,0 +1,190 @@
+{% extends 'base.html '%}  
+{% block title%}Requester dashboard {% endblock %}
+{% block content %}
+<style>
+    .requester{
+        width: 80%;
+        /* background-color: #19ab5d;  */
+        /* background-color: #51A5C4;  */
+        color: #54596A;  
+        /* background-color: #1454DF; BUTTON */
+        /* background-color: #929EAD; */
+        /* background-color: #AAD2DC; */
+        /* background-color: #92AAC0; */
+        /* background-color: #f7f8fA; */
+    }
+    .requester-welcome{
+        margin: 20px;
+    }
+    .requester-intro{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:10px 20px 20px  ;
+    }
+    /* .requester-intro-user{
+       
+    } */
+    .requester-intro span{
+        font-size: small;
+        padding: 5px 20px;
+        margin-left: 5px;
+        background-color: #0d7398;
+        color: #fff;
+        border-radius: 10px;
+    }
+    .requester-intro-user .user-email{
+        font-size: small;
+        margin: 2px;
+
+    }
+    .requester-intro .add-button{
+        background-color:  #19ab5d;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .requester-request-list{
+        width: 100%;
+        box-sizing: border-box;
+        /* padding: 10px 20px; */
+        overflow: auto;
+        background-color:#bec0c5 ;
+        
+    }
+    form{
+        background-color: #fff;
+        padding:  20px 0 10px 20px;
+    }
+    input{
+        width: 300px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        outline: none;
+        color: #6b6b6b;
+        border: 1px solid #bec0c5;
+        font-size: medium;
+    }
+    table{
+        width: 100%;
+        box-sizing: border-box;
+        
+        
+    }
+    table .first{
+        padding: 10px 20px;
+    }
+    thead{
+        background-color: #04081A;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+    }
+    thead tr td{
+        text-transform: uppercase;
+        padding: 10px;
+        border: none;
+        font-size: larger;
+        font-weight: 500;
+        max-width: 200px;
+        min-width: 150px;
+    }
+    tbody{
+        /* background-color:#bec0c5 ; */
+        background-color: rgb(240, 236, 236);
+        text-align: center;
+
+    }
+    tbody td{
+        padding: 20px;
+    }
+    tbody tr:hover{
+        color: #fff;
+        background-color: #55554d;
+    }
+</style>
+<div class="requester">
+    <h2 class="requester-welcome">Your Request History</h2>
+    <div class="requester-intro">
+        <div class="requester-intro-user">
+            <h2>Olakay<span>Requester</span></h2>
+            <p class="user-email">programmerolakay@gmail.com</p>
+        </div>
+    </div>
+    <!-- <form action="">
+        <input type="search" name="title" id="" placeholder="Search Request">
+    </form> -->
+    <div class="requester-request-list">
+        <table cellspacing="0" >
+            <thead>
+                <tr>
+                    <td class="first">TITLE</td>
+                    <td>AMOUNT</td>
+                    <td>STATUS</td>
+                    <td>Created at</td>
+                    <td>Rejected</td>
+                    <td>REJECTED</td>
+                    <td>COMPLETED</td>
+                    <td>DISBURSED</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense in expense_request%}
+                <tr>
+                    <td class="first">{{ expense.title }}</td>
+                    <td>{{ expense.add_commas }}</td>
+                    {% if expense.is_hod %}
+                    <td>Approved</td>
+                    {% else %}
+                    <td>Pending</td>
+                    {% endif%}
+                    {% if expense.is_line_executive %}
+                    <td>Approved</td>
+                    {%  else %}
+                    <td>Pending</td>
+                    {% endif%}
+                    {% if expense.is_cost_manager %}
+                    <td>Approved</td>
+                    {%  else %}
+                    <td>Pending</td>
+                    {% endif%}
+                    {% if expense.is_md %}
+                    <td>Approved</td>
+                    {%  else %}
+                    <td>Pending</td>
+                    {% endif%}
+                    {% if expense.is_disbursed %}
+                    <td>Approved</td>
+                    {%  else %}
+                    <td>Pending</td>
+                    {% endif%}
+                    {% if expense.is_completed %}
+                    <td>Approved</td>
+                    {%  else %}
+                    <td>Pending</td>
+                    {% endif%}
+                    
+                    
+                    
+                </tr>
+                {% endfor%}
+               
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock%}
+
+{% block script %}
+    <!-- <script>
+        function createRequest(){
+            const requestName = prompt('Enter request description below ')
+            if( requestName){
+                alert('Your request was recieved')
+            }
+        }
+    </script> -->
+{% endblock%}

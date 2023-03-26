@@ -1,0 +1,72 @@
+
+{% extends 'base.html '%}
+
+{% block title%}Add user {% endblock %}
+
+{% block content %}
+
+<a href='{% url "users:user-add" %}' >ADD USER</a>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg max-w-[1000px] mx-auto my-20">
+    <table class="w-full text-sm text-left  text-gray-400">
+        <thead class="text-xs  uppercase bg-gray-50 bg-gray-700 text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Email
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Department
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Role
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Created at
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <!-- Action -->
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr class="bg-white border-b text-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap ">
+                    Apple MacBook Pro 17" 
+                </th>
+                <td class="px-6 py-4">
+                    {{ user.email }}
+                </td>
+                <td class="px-6 py-4">
+                    Silver
+                </td>
+                <td class="px-6 py-4">
+                    Laptop
+                </td>
+                <td class="px-6 py-4">
+                    {{ user.date_joined|date:"M d, Y" }}
+                </td>
+                <td class="px-6 py-4">
+                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock%}
+
+{% block script %}
+    <script>
+       
+    </script>
+{% endblock%}
+
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+.env
+recycle.txt
+n.txt
+node_modules/
