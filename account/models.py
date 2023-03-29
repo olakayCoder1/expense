@@ -129,24 +129,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 
-
-
         
-
-@receiver(post_save,sender=settings.AUTH_USER_MODEL)
-def token_generator_signal(sender, instance , created , **kwarg):
-    if created:
-        alphabet = string.ascii_letters + string.digits
-        random_string = ''.join(secrets.choice(alphabet) for i in range(20))
-        print(random_string)
-        user_identifier = random_string+str(instance.id)
-        instance.slug = user_identifier
-        print(user_identifier)
-        instance.save()
-        
-	
-
-
 
 class ExpenseRequest(models.Model):
     request_department = models.ForeignKey(Department, related_name='expense', on_delete=models.SET_NULL , null=True)
@@ -161,7 +144,7 @@ class ExpenseRequest(models.Model):
     is_completed = models.BooleanField(default=False)
     is_disbursed = models.BooleanField(default=False)
     is_rejected = models.BooleanField(default=False)
-    slug = models.CharField(max_length=300)
+    slug = models.CharField(max_length=300, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
@@ -189,14 +172,7 @@ class ExpenseRequest(models.Model):
         return True 
 
 
-@receiver(post_save,sender=ExpenseRequest)
-def token_generator_signal(sender, instance , created , **kwarg):
-    if created:
-        alphabet = string.ascii_letters + string.digits
-        random_string = ''.join(secrets.choice(alphabet) for i in range(20))
-        user_identifier = random_string+str(instance.id)
-        instance.slug = user_identifier
-        instance.save()
+
 
 
 

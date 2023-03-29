@@ -64,7 +64,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_browser_reload.middleware.BrowserReloadMiddleware',
-    'account.middleware.LogoutRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'expense.urls'

@@ -26,6 +26,6 @@ urlpatterns = [
     # path('request/', include('requester.urls')), 
     path('account/', include('account.urls' , namespace='account')), 
     path('__reload__/', include('django_browser_reload.urls')), 
-    path('login/',  login_route ,name='login'),   
-    path('logout/', LogoutView.as_view(), name='logout'),  
+    path('signin',  login_route ,name='login'),   
+    path('logout', LogoutView.as_view(), name='logout'),  
 ]

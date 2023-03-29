@@ -5,7 +5,7 @@
 
 <div class="container mx-auto flex justify-between flex-wrap p-5 flex-col md:flex-row items-center">
     <div class="">
-        <h2 class='text-base font-medium'>Welcome<span> Olanrewaju</span></h2>
+        <h2 class='text-xl font-medium'>Welcome<span> Olanrewaju</span></h2>
     </div>
     <a href="{% url 'client:create_request' %}">
         <button type="button"
@@ -24,154 +24,163 @@
 </div>
 
 <div class="mx-auto container">
-   
-    
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 ">
-        <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white">
-            Our products
-            <p class="mt-1 text-sm font-normal text-gray-500 ">Browse a list of Flowbite products designed to help you work and play, stay organized, get answers, keep in touch, grow your business, and more.</p>
-        </caption>
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
-            <tr>
-                <th scope="col" class="px-6 py-3 whitespace-nowrap ">
-                    Title
-                </th>
-                <th scope="col" class="px-6 py-3 whitespace-nowrap ">
-                    AMOUNT
-                </th>
-                <th scope="col" class="px-6 py-3 whitespace-nowrap ">
-                    HOD
-                </th>
-                <th scope="col" class="px-6 py-3 whitespace-nowrap ">
-                    LINE EXECUTIVE
-                </th>
-                <th scope="col" class="px-6 py-3 whitespace-nowrap ">
-                    COST MANAGER
-                </th>
-                <th scope="col" class="px-6 py-3 whitespace-nowrap ">
-                    FINAL APPROVAL
-                </th>
-                <th scope="col" class="px-6 py-3 whitespace-nowrap ">
-                    COMPLETED
-                </th>
-                <th scope="col" class="px-6 py-3 whitespace-nowrap ">
-                    DISBURSED
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <span class="sr-only">Edit</span>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
+    {% if expense_request %} 
+    <caption class="p-5 text-lg font-semibold text-left text-gray-900">
+        Active expense
+        <p class="mt-1 text-sm font-normal text-gray-700 ">
+        Each department has a maximum of 5 actiave expense.
+        </p>
+    </caption>
+    <div class="relative overflow-x-auto shadow-md my-16 ">
+        <table class="w-full text-sm text-left text-gray-500 ">
+            {% comment %} <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white">
+                Active expense
+                <p class="mt-1 text-sm font-normal text-gray-500 ">
+                Each department has a maximum of 5 actiave expense.
+                </p>
+            </caption> {% endcomment %}
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                <tr>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        Title
+                    </th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        AMOUNT
+                    </th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        HOD
+                    </th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        LINE EXECUTIVE
+                    </th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        COST MANAGER
+                    </th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        FINAL APPROVAL
+                    </th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        COMPLETED
+                    </th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        DISBURSED
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        <span class="sr-only">Edit</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
 
-            {% for expense in expense_request%}
-            <tr class="border-b">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    Microsoft Surface Pro
-                </th>
-                <td class="px-6 py-4">
-                    {{ expense.add_commas}}
-                </td>
-                {% if expense.is_hod %}
-                    <td>
-                    <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
-                            Approved
-                    </span>
+                {% for expense in expense_request%}
+                <tr class="border-b">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ expense.title|truncatechars:20 }}
+                    </th>
+                    <td class="px-6 py-3">
+                        {{ expense.add_commas}}
                     </td>
-                {% else %}
-                    <td>
-                    <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
-                            Rejected
-                    </span>
-                    </td>
-                {% endif%} 
+                    {% if expense.is_hod %}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
+                                Approved
+                        </span>
+                        </td>
+                    {% else %}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
+                                Pending
+                        </span>
+                        </td>
+                    {% endif%} 
 
-                {% if expense.is_line_executive %}
-                    <td>
-                    <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
-                            Approved
-                    </span>
-                    </td>
-                {% else %}
-                    <td>
-                    <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
-                            Pending
-                    </span>
-                    </td>
-                {% endif%} 
-
-
-                {% if expense.is_cost_manager %}
-                    <td>
-                    <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
-                            Approved
-                    </span>
-                    </td>
-                {% else %}
-                    <td>
-                    <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
-                            Pending
-                    </span>
-                    </td>
-                {% endif%} 
+                    {% if expense.is_line_executive %}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
+                                Approved
+                        </span>
+                        </td>
+                    {% else %}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
+                                Pending
+                        </span>
+                        </td>
+                    {% endif%} 
 
 
-                {% if expense.is_md %}
-                    <td>
-                    <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
-                            Success
-                    </span>
-                    </td>
-                {% else %}
-                    <td>
-                    <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
-                            Pending
-                    </span>
-                    </td>
-                {% endif%} 
-                
-
-                {% if expense.is_completed %}
-                    <td>
-                    <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
-                            Success
-                    </span>
-                    </td>
-                {% else %}
-                    <td>
-                    <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
-                            Pending
-                    </span>
-                    </td>
-                {% endif%} 
+                    {% if expense.is_cost_manager %}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
+                                Approved
+                        </span>
+                        </td>
+                    {% else %}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
+                                Pending
+                        </span>
+                        </td>
+                    {% endif%} 
 
 
-                {% if expense.is_disbursed %}
-                    <td>
-                    <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
-                            Success
-                    </span>
+                    {% if expense.is_md %}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
+                                Success
+                        </span>
+                        </td>
+                    {% else %}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
+                                Pending
+                        </span>
+                        </td>
+                    {% endif%} 
+                    
+
+                    {% if expense.is_completed %}
+                        <td>
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
+                                Success
+                        </span>
+                        </td>
+                    {% else %}
+                        <td>
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
+                                Pending
+                        </span>
+                        </td>
+                    {% endif%} 
+
+
+                    {% if expense.is_disbursed %}
+                        <td>
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
+                                Success
+                        </span>
+                        </td>
+                    {% else %}
+                        <td>
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
+                                Pending
+                        </span>
+                        </td>
+                    {% endif%} 
+                    <td class="px-6 py-4 text-right">
+                        <a href='{% url 'client:expense-detail' expense.slug %}' class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                     </td>
-                {% else %}
-                    <td>
-                    <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
-                            Pending
-                    </span>
-                    </td>
-                {% endif%} 
-                <td class="px-6 py-4 text-right">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
-            </tr>
-            {% endfor%}
-        </tbody>
-    </table>
+                </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+    </div>
+    {% else %} 
+    <blockquote class="text-base italic font-base text-gray-600 p-5">
+        <p>OOPS you have no active expense request <a href='{% url 'client:create_request' %}' class='text-blue-600 font-semibold underline underline-offset-1' >create</p>
+    </blockquote>
+    {% endif %} 
 </div>
-
-    
-</div>
-
 {% endblock%}
 
 {% block script %}

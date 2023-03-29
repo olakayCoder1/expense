@@ -34,15 +34,13 @@ def removeZero(val):
 def home(request):
     return render(request, 'home.html') 
 
-
+        
 @login_required
 def dashboard(request):
-    # user = Users.objects.get(id=1)
+    # user = Users.objects.get(id=1)                      
     user = Users.objects.get(id=request.user.id) 
-    print(user.groups.all()) 
     if user.groups.filter(name='requester'):
-        expense =  ExpenseRequest.objects.filter( request_user=user )
-        expense =  ExpenseRequest.objects.all()    
+        expense =  ExpenseRequest.objects.filter(request_user=user ).order_by('-created_at')       
         # expense =  ExpenseRequest.objects.filter(request_department=user.department).exclude(is_hod=True).exclude(is_rejected=True)
         context = { 'expense_request': expense }  
         # return render(request, 'head_of_department/department-hod-dashboard.html', context )
@@ -68,7 +66,7 @@ def dashboard(request):
     
 
 
-
+@login_required
 def reject_expense_request(request, slug):
     expense = ExpenseRequest.objects.get(slug=slug)
     
@@ -79,7 +77,7 @@ def reject_expense_request(request, slug):
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
-
+@login_required
 def accept_expense_request(request, slug):
     expense = ExpenseRequest.objects.get(slug=slug)
     user = Users.objects.get(id=request.user.id)
@@ -132,7 +130,7 @@ def requester_dashboard(request):
 
 
 
-
+@login_required
 def add_request(request):
     if request.method == 'POST':
         user = Users.objects.get(id=request.user.id)
@@ -157,7 +155,7 @@ def add_request(request):
             request_department=department
         ).count()
         if has_pending_expense_request >= 3 :
-            messages.error(request,'Expense request cannot be processed, department has reach maximum pending request' )
+            messages.error(request,'Expense request cannot be processed, department has reach maximum ctive request' )
             return render(request, 'requester/request-form.html')
         try:
             ExpenseRequest.objects.create(
@@ -177,11 +175,17 @@ def add_request(request):
 
 
 
-
+@login_required
 def expense_history(request):
     expense = ExpenseRequest.objects.filter(is_completed=True)
     context = { 'expense_request': expense } 
     return render(request, 'requester/request-history.html', context)
+
+@login_required
+def expense_detail(request, slug):
+    expense = ExpenseRequest.objects.filter(is_completed=True)
+    context = { 'expense_request': expense } 
+    return render(request, 'requester/details.html', context )     
 
 
 

@@ -9,21 +9,26 @@
         </a>
         
         {% if request.user.is_authenticated %}
-        <nav class="md:ml-auto flex flex-wrap items-center text-sm justify-center">
-            <a class="mr-5 hover:text-gray-900 hover:cursor-pointer">History</a>
-            <a class="mr-5 hover:text-gray-900 hover:cursor-pointer">Account</a>
+        <nav class="md:ml-auto flex flex-wrap items-center text-sm md:text-base justify-center">
+            <a href='{% url 'client:dashboard' %}' class="mr-5 hover:text-gray-900 hover:cursor-pointer">Dashboard</a>
+            <a href='{% url 'client:expense-history' %}' class="mr-5 hover:text-blue-900 hover:cursor-pointer">History</a>
+            <a class="mr-5 hover:text-blue-900 hover:cursor-pointer">Account</a>
         </nav>
+        <a href='{% url 'logout' %}'>
         <button class="inline-flex text-white items-center bg-red-500 border-0 py-1 px-3 focus:outline-none hover:bg-red-400 rounded text-sm mt-4 md:mt-0">
             Sign Out
         </button>
+        </a>
         {% else %}
-        <nav class="md:ml-auto flex flex-wrap items-center text-sm justify-center">
+        <nav class="md:ml-auto flex flex-wrap items-center text-sm md:text-base justify-center">
             <a class="mr-5 hover:text-gray-900 hover:cursor-pointer">First Link</a>
             <a class="mr-5 hover:text-gray-900 hover:cursor-pointer">Second Link</a>
         </nav>
+        <a href='{% url 'login' %}'>
         <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-                Sign In
+            Sign In
         </button>
+        </a>
         {% endif %}
     
     </div>

@@ -1,179 +1,202 @@
 {% extends 'base.html '%}  
 {% block title%}Requester dashboard {% endblock %}
 {% block content %}
-<style>
-    .requester{
-        width: 80%;
-        /* background-color: #19ab5d;  */
-        /* background-color: #51A5C4;  */
-        color: #54596A;  
-        /* background-color: #1454DF; BUTTON */
-        /* background-color: #929EAD; */
-        /* background-color: #AAD2DC; */
-        /* background-color: #92AAC0; */
-        /* background-color: #f7f8fA; */
-    }
-    .requester-welcome{
-        margin: 20px;
-    }
-    .requester-intro{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding:10px 20px 20px  ;
-    }
-    /* .requester-intro-user{
-       
-    } */
-    .requester-intro span{
-        font-size: small;
-        padding: 5px 20px;
-        margin-left: 5px;
-        background-color: #0d7398;
-        color: #fff;
-        border-radius: 10px;
-    }
-    .requester-intro-user .user-email{
-        font-size: small;
-        margin: 2px;
-
-    }
-    .requester-intro .add-button{
-        background-color:  #19ab5d;
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    .requester-request-list{
-        width: 100%;
-        box-sizing: border-box;
-        /* padding: 10px 20px; */
-        overflow: auto;
-        background-color:#bec0c5 ;
-        
-    }
-    form{
-        background-color: #fff;
-        padding:  20px 0 10px 20px;
-    }
-    input{
-        width: 300px;
-        padding: 10px 20px;
-        border-radius: 10px;
-        outline: none;
-        color: #6b6b6b;
-        border: 1px solid #bec0c5;
-        font-size: medium;
-    }
-    table{
-        width: 100%;
-        box-sizing: border-box;
-        
-        
-    }
-    table .first{
-        padding: 10px 20px;
-    }
-    thead{
-        background-color: #04081A;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-    }
-    thead tr td{
-        text-transform: uppercase;
-        padding: 10px;
-        border: none;
-        font-size: larger;
-        font-weight: 500;
-        max-width: 200px;
-        min-width: 150px;
-    }
-    tbody{
-        /* background-color:#bec0c5 ; */
-        background-color: rgb(240, 236, 236);
-        text-align: center;
-
-    }
-    tbody td{
-        padding: 20px;
-    }
-    tbody tr:hover{
-        color: #fff;
-        background-color: #55554d;
-    }
-</style>
-<div class="requester">
-    <h2 class="requester-welcome">Your Request History</h2>
-    <div class="requester-intro">
-        <div class="requester-intro-user">
-            <h2>Olakay<span>Requester</span></h2>
-            <p class="user-email">programmerolakay@gmail.com</p>
+<div class="container mx-auto flex justify-between flex-wrap p-5 flex-col md:flex-row items-center">
+    <h2 class='text-xl font-medium'>Your Request History</h2>
+    <form class="flex justify-center">
+        <div class="mb-3 xl:w-96">
+            <div class="relative mb-4 flex w-full flex-wrap items-stretch">
+                <input
+                    type="search"
+                    class="relative m-0 -mr-px block w-[1%] min-w-0 flex-auto rounded-l border border-solid 
+                    border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal 
+                    text-neutral-700 outline-none transition duration-300 ease-in-out focus:border-0 focus:border-blue-400 
+                    focus:text-neutral-700 focus:shadow-te-primary focus:outline-none "
+                    placeholder="Search" name='search'
+                    />
+                <button
+                    class="relative z-[2] flex items-center rounded-r px-6 py-1.5
+                    text-xs font-medium uppercase leading-tight text-white shadow-md 
+                    transition duration-150 ease-in-out bg-gray-700 hover:shadow-lg 
+                    focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 
+                    active:bg-blue-800 active:shadow-lg"
+                    type="submit"
+                    >
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="h-5 w-5">
+                    <path
+                        fill-rule="evenodd"
+                        d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                        clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
         </div>
-    </div>
-    <!-- <form action="">
-        <input type="search" name="title" id="" placeholder="Search Request">
-    </form> -->
-    <div class="requester-request-list">
-        <table cellspacing="0" >
-            <thead>
+    </form>
+
+</div>
+    <!-- <p class="add-button" onclick="createRequest()">Create new request</p> -->
+</div>
+<div class="mx-auto container">
+    {% if expense_request %} 
+    <caption class="p-5 text-lg font-semibold text-left text-gray-900">
+        Active expense
+        <p class="mt-1 text-sm font-normal text-gray-700 ">
+        Each department has a maximum of 5 actiave expense.
+        </p>
+    </caption>
+    <div class="relative overflow-x-auto shadow-md my-16 ">
+        <table class="w-full text-sm text-left text-gray-500 ">
+            {% comment %} <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white">
+                Active expense
+                <p class="mt-1 text-sm font-normal text-gray-500 ">
+                Each department has a maximum of 5 actiave expense.
+                </p>
+            </caption> {% endcomment %}
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                 <tr>
-                    <td class="first">TITLE</td>
-                    <td>AMOUNT</td>
-                    <td>STATUS</td>
-                    <td>Created at</td>
-                    <td>Rejected</td>
-                    <td>REJECTED</td>
-                    <td>COMPLETED</td>
-                    <td>DISBURSED</td>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        Title
+                    </th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        AMOUNT
+                    </th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        HOD
+                    </th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        LINE EXECUTIVE
+                    </th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        COST MANAGER
+                    </th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        FINAL APPROVAL
+                    </th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        COMPLETED
+                    </th>
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap ">
+                        DISBURSED
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        <span class="sr-only">Edit</span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
+
                 {% for expense in expense_request%}
-                <tr>
-                    <td class="first">{{ expense.title }}</td>
-                    <td>{{ expense.add_commas }}</td>
+                <tr class="border-b">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ expense.title|truncatechars:20 }}
+                    </th>
+                    <td class="px-6 py-3">
+                        {{ expense.add_commas}}
+                    </td>
                     {% if expense.is_hod %}
-                    <td>Approved</td>
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
+                                Approved
+                        </span>
+                        </td>
                     {% else %}
-                    <td>Pending</td>
-                    {% endif%}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
+                                Pending
+                        </span>
+                        </td>
+                    {% endif%} 
+
                     {% if expense.is_line_executive %}
-                    <td>Approved</td>
-                    {%  else %}
-                    <td>Pending</td>
-                    {% endif%}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
+                                Approved
+                        </span>
+                        </td>
+                    {% else %}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
+                                Pending
+                        </span>
+                        </td>
+                    {% endif%} 
+
+
                     {% if expense.is_cost_manager %}
-                    <td>Approved</td>
-                    {%  else %}
-                    <td>Pending</td>
-                    {% endif%}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
+                                Approved
+                        </span>
+                        </td>
+                    {% else %}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
+                                Pending
+                        </span>
+                        </td>
+                    {% endif%} 
+
+
                     {% if expense.is_md %}
-                    <td>Approved</td>
-                    {%  else %}
-                    <td>Pending</td>
-                    {% endif%}
-                    {% if expense.is_disbursed %}
-                    <td>Approved</td>
-                    {%  else %}
-                    <td>Pending</td>
-                    {% endif%}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
+                                Success
+                        </span>
+                        </td>
+                    {% else %}
+                        <td class="px-6 py-3">
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
+                                Pending
+                        </span>
+                        </td>
+                    {% endif%} 
+                    
+
                     {% if expense.is_completed %}
-                    <td>Approved</td>
-                    {%  else %}
-                    <td>Pending</td>
-                    {% endif%}
-                    
-                    
-                    
+                        <td>
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
+                                Success
+                        </span>
+                        </td>
+                    {% else %}
+                        <td>
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
+                                Pending
+                        </span>
+                        </td>
+                    {% endif%} 
+
+
+                    {% if expense.is_disbursed %}
+                        <td>
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-green-600 ">       
+                                Success
+                        </span>
+                        </td>
+                    {% else %}
+                        <td>
+                        <span class="inline-block  text-xs font-medium  uppercase leading-normal text-yellow-600 ">       
+                                Pending
+                        </span>
+                        </td>
+                    {% endif%} 
+                    <td class="px-6 py-4 text-right">
+                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    </td>
                 </tr>
                 {% endfor%}
-               
             </tbody>
         </table>
     </div>
+    {% else %} 
+    <blockquote class="text-base italic font-base text-gray-600 p-5">
+        <p>OOPS you have no expense request <a href='{% url 'client:create_request' %}' class='text-blue-600 font-semibold underline underline-offset-1' >create</p>
+    </blockquote>
+    {% endif %} 
 </div>
 
 {% endblock%}

@@ -11,8 +11,24 @@
     {% comment %} <script src="https://cdn.tailwindcss.com"></script> {% endcomment %}
     <title>{% block title %}HOME{% endblock %}</title>
 </head>
-<body>
+<body class=''>
     {% include "header.html" %}
+    <div class='container mx-auto'>
+    {% if messages %}
+        {% for message in messages %}
+          {% if message.tags == "success" %}
+            <div class="mb-4 bg-green-200 py-3 px-6 text-base text-green-700"  >
+            {{ message }} 
+            </div>
+          {% elif message.tags == "error" %}
+            <div class="mb-4 bg-red-100 py-3 px-6 text-base text-red-700"  >
+            {{ message }} 
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+    
     {% block content %}<h1>BASE HTML </h1>{% endblock%}
     {% include "footer.html" %}
     {% block script %}{% endblock%}
